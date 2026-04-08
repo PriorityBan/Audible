@@ -91,10 +91,7 @@ public class ReaderModule extends Module {
         saveProgress();
     }
 
-    @Override
-    public boolean enabledSetting() {
-        return true;
-    }
+ 
 
     /* ================================
        🔁 TICK LOOP
