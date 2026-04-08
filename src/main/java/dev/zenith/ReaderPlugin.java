@@ -5,10 +5,11 @@ package dev.zenith;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
-import com.zenith.command.api.CommandSource;
-private CommandContext ctx;
+
+import com.zenith.command.api.CommandContext;
 public class ReaderPlugin {
 
+    private CommandContext ctx; // ✅ here
     /* ================================
        🔧 EDITABLE SETTINGS (CHANGE THESE)
        ================================ */
