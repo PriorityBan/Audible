@@ -21,9 +21,7 @@ public class NarratorCommand extends Command {
             .name("narrator")
             .category(CommandCategory.MODULE)
             .description("Controls the book narrator")
-            .usageLines(
-                "on/off"
-            )
+            .usageLines("on/off")
             .build();
     }
 
@@ -36,7 +34,7 @@ public class NarratorCommand extends Command {
 
                 if (enabled) {
                     reader.loadFile();
-                    reader.start(c);
+                    reader.start(c); // ✅ CORRECT
                 } else {
                     reader.stop();
                 }
