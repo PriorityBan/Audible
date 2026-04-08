@@ -56,6 +56,7 @@ public class ReaderPlugin {
        ================================ */
 
     public void start() {
+        loadProgress();
         if (running) return;
 
         running = true;
@@ -80,14 +81,15 @@ public class ReaderPlugin {
                     }
 
                     String msg = messages.get(index);
-
+                    
                     if (client.player != null) {
                         client.player.networkHandler.sendChatMessage(msg);
                     }
 
                     index++;
                     sent++;
-
+                    saveProgress();
+                    
                     if (maxMessages != -1 && sent >= maxMessages) {
                         break;
                     }
