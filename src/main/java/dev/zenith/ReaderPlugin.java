@@ -11,7 +11,7 @@ public class ReaderPlugin {
     /* ================================
        🔧 EDITABLE SETTINGS (CHANGE THESE)
        ================================ */
-
+    private final Random random = new Random();
     private int minDelayMs = 3000;         // ⏱ Minimum delay
     private int maxDelayMs = 4000;         // ⏱ Maximum delay
     private boolean randomOrder = false; // 🎲 Shuffle lines
@@ -65,8 +65,10 @@ public class ReaderPlugin {
 
             while (running) {
                 try {
-                    if (messages.isEmpty()) continue;
-
+                    if (messages.isEmpty()) {
+                        try { Thread.sleep(1000); } catch (InterruptedException ignored) {}
+                        continue;
+                    }
                     if (index >= messages.size()) {
                         if (loop) {
                             index = 0;
@@ -89,7 +91,7 @@ public class ReaderPlugin {
                         break;
                     }
 
-                    int randomDelay = minDelayMs + new Random().nextInt(maxDelayMs - minDelayMs + 1);
+                    int randomDelay = minDelayMs + random.nextInt(maxDelayMs - minDelayMs + 1);
                     Thread.sleep(randomDelay);
 
                 } catch (Exception e) {
