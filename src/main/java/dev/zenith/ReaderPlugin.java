@@ -86,7 +86,7 @@ public class ReaderPlugin {
                     String msg = messages.get(index);
                     
                     ctx.getSource().sendChatMessage(msg);
-                    }
+                    
 
                     index++;
                     sent++;
@@ -147,17 +147,3 @@ public class ReaderPlugin {
     public void stop() {
         running = false;
     }
-
-    /* ================================
-       🎮 SIMPLE TOGGLE (OPTIONAL)
-       ================================ */
-
-    public void toggle() {
-        if (running) {
-            stop();
-        } else {
-            loadFile();
-            start();
-        }
-    }
-}
