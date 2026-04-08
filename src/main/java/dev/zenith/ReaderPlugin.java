@@ -18,6 +18,7 @@ public class ReaderPlugin {
     private boolean loop = false;        // 🔁 Loop when finished
     private int maxMessages = -1;       // 📊 Limit (-1 = infinite)
     private String fileName = "FinalSmartSpam.txt"; // 📂 Your file
+    private String progressFile = "reader_progress.txt"; //checkpointing location
 
     /* ================================
        ⚙️ INTERNAL STATE (DON'T TOUCH)
@@ -105,10 +106,23 @@ public class ReaderPlugin {
         }).start();
     }
 
+    //Saves Book Progress
+    private void saveProgress() {
+        try {
+                String data = index + "," + System.currentTimeMillis();
+                Files.writeString(Paths.get(progressFile), data);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    
     /* ================================
        🛑 STOP
        ================================ */
-
+    
     public void stop() {
         running = false;
     }
