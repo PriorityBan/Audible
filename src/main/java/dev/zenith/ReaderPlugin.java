@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
 import com.zenith.command.api.CommandSource;
+import com.zenith.command.api.CommandContext;
 public class ReaderPlugin {
 
     /* ================================
@@ -58,8 +59,7 @@ public class ReaderPlugin {
        🚀 START SPAMMING
        ================================ */
 
-    import com.zenith.command.api.CommandContext;
-
+  
     public void start(CommandContext ctx){
         loadProgress();
         
