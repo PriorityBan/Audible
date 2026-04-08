@@ -13,10 +13,10 @@ public class ReaderPlugin {
        ================================ */
 
     private int delayMs = 4000;         // ⏱ Delay between messages (ms)
-    private boolean randomOrder = true; // 🎲 Shuffle lines
-    private boolean loop = true;        // 🔁 Loop when finished
+    private boolean randomOrder = false; // 🎲 Shuffle lines
+    private boolean loop = false;        // 🔁 Loop when finished
     private int maxMessages = -1;       // 📊 Limit (-1 = infinite)
-    private String fileName = "smart_spam_book.txt"; // 📂 Your file
+    private String fileName = "FinalSmartSpam.txt"; // 📂 Your file
 
     /* ================================
        ⚙️ INTERNAL STATE (DON'T TOUCH)
