@@ -12,7 +12,7 @@ public class ReaderPlugin {
        🔧 EDITABLE SETTINGS (CHANGE THESE)
        ================================ */
 
-    private int delayMs = 3000;         // ⏱ Delay between messages (ms)
+    private int delayMs = 4000;         // ⏱ Delay between messages (ms)
     private boolean randomOrder = true; // 🎲 Shuffle lines
     private boolean loop = true;        // 🔁 Loop when finished
     private int maxMessages = -1;       // 📊 Limit (-1 = infinite)
