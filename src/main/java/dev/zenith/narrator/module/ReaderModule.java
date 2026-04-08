@@ -90,7 +90,11 @@ public class ReaderModule extends Module {
     public void onDisable() {
         saveProgress();
     }
-
+    
+    @Override
+    public boolean enabledSetting() {
+        return true;
+    }
  
 
     /* ================================
