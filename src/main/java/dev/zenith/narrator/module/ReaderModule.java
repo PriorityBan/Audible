@@ -12,7 +12,8 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
-
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import static com.github.rfresh2.EventConsumer.of;
 
 public class ReaderModule extends Module {
@@ -42,22 +43,30 @@ public class ReaderModule extends Module {
        ================================ */
     public void loadFile() {
         try {
-            messages = Files.readAllLines(Paths.get(fileName))
-                .stream()
+            var inputStream = getClass().getClassLoader().getResourceAsStream(fileName);
+    
+            if (inputStream == null) {
+                System.out.println("[ReaderModule] File not found in resources!");
+                messages = List.of("Error: file not found");
+                return;
+            }
+    
+            messages = new BufferedReader(new InputStreamReader(inputStream))
+                .lines()
                 .filter(line -> !line.trim().isEmpty())
                 .toList();
-
+    
             if (randomOrder) {
                 Collections.shuffle(messages);
             }
-
+    
             System.out.println("[ReaderModule] Loaded " + messages.size() + " lines");
-
-        } catch (IOException e) {
+    
+        } catch (Exception e) {
             e.printStackTrace();
             messages = List.of("Error loading file");
         }
-
+    
         if (index >= messages.size()) {
             index = 0;
         }
