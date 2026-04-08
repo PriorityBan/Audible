@@ -1,4 +1,4 @@
-package org.example;
+package dev.zenith;
 
 import net.minecraft.client.MinecraftClient;
 
