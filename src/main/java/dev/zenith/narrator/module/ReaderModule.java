@@ -73,7 +73,7 @@ public class ReaderModule extends Module {
         loadFile();
         sent = 0;
         timer.reset();
-        System.out.println(" Attempting to send a message  " ;
+        System.out.println(" Attempting to send a message  " );
     }
 
     @Override
