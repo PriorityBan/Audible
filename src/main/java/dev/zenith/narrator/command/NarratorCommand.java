@@ -36,7 +36,7 @@ public class NarratorCommand extends Command {
 
                 if (enabled) {
                     reader.loadFile();
-                    reader.start(c.getSource());
+                    reader.start(c);
                 } else {
                     reader.stop();
                 }
