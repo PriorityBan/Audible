@@ -115,7 +115,24 @@ public class ReaderPlugin {
             e.printStackTrace();
         }
     }
-
+   
+    private void loadProgress() {
+        try {
+            Path path = Paths.get(progressFile);
+    
+            if (!Files.exists(path)) return;
+    
+            String data = Files.readString(path);
+            String[] parts = data.split(",");
+    
+            index = Integer.parseInt(parts[0]);
+    
+            System.out.println("[ReaderPlugin] Resuming at index " + index);
+    
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
     
