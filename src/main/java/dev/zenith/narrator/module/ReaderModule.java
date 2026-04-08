@@ -14,6 +14,7 @@ import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+
 import static com.github.rfresh2.EventConsumer.of;
 
 public class ReaderModule extends Module {
@@ -38,35 +39,38 @@ public class ReaderModule extends Module {
     private int index = 0;
     private int sent = 0;
 
+    // ✅ FIX: internal enabled flag
+    private boolean enabled = false;
+
     /* ================================
        📂 LOAD FILE
        ================================ */
     public void loadFile() {
         try {
             var inputStream = getClass().getResourceAsStream("/" + fileName);
-    
+
             if (inputStream == null) {
                 System.out.println("[ReaderModule] File not found in resources!");
                 messages = List.of("Error: file not found");
                 return;
             }
-    
+
             messages = new BufferedReader(new InputStreamReader(inputStream))
                 .lines()
                 .filter(line -> !line.trim().isEmpty())
                 .toList();
-    
+
             if (randomOrder) {
                 Collections.shuffle(messages);
             }
-    
+
             System.out.println("[ReaderModule] Loaded " + messages.size() + " lines");
-    
+
         } catch (Exception e) {
             e.printStackTrace();
             messages = List.of("Error loading file");
         }
-    
+
         if (index >= messages.size()) {
             index = 0;
         }
@@ -77,25 +81,28 @@ public class ReaderModule extends Module {
        ================================ */
     @Override
     public void onEnable() {
+        enabled = true; // ✅ FIX
+
         System.out.println("[ReaderModule] ENABLED");
+
         delayTicks = getRandomDelayTicks();
         loadProgress();
         loadFile();
         sent = 0;
         timer.reset();
-        System.out.println(" Attempting to send a message  " );
     }
 
     @Override
     public void onDisable() {
+        enabled = false; // ✅ FIX
         saveProgress();
+        System.out.println("[ReaderModule] DISABLED");
     }
-    
+
     @Override
     public boolean enabledSetting() {
-        return true;
+        return enabled; // ✅ FIX
     }
- 
 
     /* ================================
        🔁 TICK LOOP
@@ -115,8 +122,6 @@ public class ReaderModule extends Module {
         timer.reset();
         delayTicks = getRandomDelayTicks();
 
-       
-
         if (index >= messages.size()) {
             if (loop) {
                 index = 0;
@@ -129,7 +134,9 @@ public class ReaderModule extends Module {
 
         String msg = messages.get(index);
 
-        // ✅ Send real chat packet
+        // ✅ DEBUG (useful)
+        System.out.println("[ReaderModule] Sending: " + msg);
+
         var packet = new ServerboundChatPacket(
             ChatUtil.sanitizeChatMessage(msg)
         );
