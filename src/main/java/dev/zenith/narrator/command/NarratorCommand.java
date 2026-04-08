@@ -6,21 +6,21 @@ import com.zenith.command.api.CommandCategory;
 import com.zenith.command.api.CommandContext;
 import com.zenith.command.api.CommandUsage;
 import com.zenith.discord.Embed;
-import dev.zenith.ReaderPlugin;
 
+import dev.zenith.module.ReaderModule;
+
+import static com.zenith.Globals.MODULE;
 import static com.zenith.command.brigadier.ToggleArgumentType.getToggle;
 import static com.zenith.command.brigadier.ToggleArgumentType.toggle;
 
 public class NarratorCommand extends Command {
-
-    private static final ReaderPlugin reader = new ReaderPlugin();
 
     @Override
     public CommandUsage commandUsage() {
         return CommandUsage.builder()
             .name("narrator")
             .category(CommandCategory.MODULE)
-            .description("Controls the book narrator")
+            .description("Controls the narrator module")
             .usageLines("on/off")
             .build();
     }
@@ -32,11 +32,13 @@ public class NarratorCommand extends Command {
 
                 boolean enabled = getToggle(c, "toggle");
 
+                // ✅ Get your module
+                var module = MODULE.get(ReaderModule.class);
+
                 if (enabled) {
-                    reader.loadFile();
-                    reader.start(c); // ✅ CORRECT
+                    module.enable();   // start reading
                 } else {
-                    reader.stop();
+                    module.disable();  // stop reading
                 }
 
                 c.getSource().getEmbed()
