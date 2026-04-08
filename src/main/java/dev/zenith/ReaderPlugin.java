@@ -58,8 +58,11 @@ public class ReaderPlugin {
        🚀 START SPAMMING
        ================================ */
 
-    public void start(CommandSource source){
+    import com.zenith.command.api.CommandContext;
+
+    public void start(CommandContext ctx){
         loadProgress();
+        
         if (running) return;
 
         running = true;
@@ -82,10 +85,10 @@ public class ReaderPlugin {
                             break;
                         }
                     }
-
+                    var source = ctx.getSource();
                     String msg = messages.get(index);
                     
-                    source.getClient().sendChat(msg);
+                    source.sendMessage(msg);
                     
 
                     index++;
