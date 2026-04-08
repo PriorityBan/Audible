@@ -77,6 +77,7 @@ public class ReaderModule extends Module {
        ================================ */
     @Override
     public void onEnable() {
+        System.out.println("[ReaderModule] ENABLED");
         delayTicks = getRandomDelayTicks();
         loadProgress();
         loadFile();
