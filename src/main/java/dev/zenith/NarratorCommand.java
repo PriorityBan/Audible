@@ -1,6 +1,6 @@
 package dev.zenith.command;
 
-import dev.zenith.ReaderPlugin;
+import org.example.ReaderPlugin;
 
 public class NarratorCommand {
 
@@ -9,7 +9,7 @@ public class NarratorCommand {
     public static void execute(String[] args) {
 
         if (args.length == 0) {
-            System.out.println("Usage: Narrator ON/OFF");
+            System.out.println("Usage: narrator on/off");
             return;
         }
 
@@ -27,7 +27,7 @@ public class NarratorCommand {
                 break;
 
             default:
-                System.out.println("Usage: Narrator ON/OFF");
+                System.out.println("Usage: narrator on/off");
         }
     }
 }
