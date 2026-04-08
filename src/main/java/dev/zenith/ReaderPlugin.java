@@ -1,11 +1,11 @@
 package dev.zenith;
 
-import net.minecraft.client.MinecraftClient;
+
 
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
-
+import com.zenith.command.api.CommandContext;
 public class ReaderPlugin {
 
     /* ================================
@@ -58,12 +58,12 @@ public class ReaderPlugin {
        🚀 START SPAMMING
        ================================ */
 
-    public void start() {
+    public void start(CommandContext ctx) {
         loadProgress();
         if (running) return;
 
         running = true;
-        MinecraftClient client = MinecraftClient.getInstance();
+        
 
         new Thread(() -> {
             int sent = 0;
@@ -85,8 +85,7 @@ public class ReaderPlugin {
 
                     String msg = messages.get(index);
                     
-                    if (client.player != null) {
-                        client.player.networkHandler.sendChatMessage(msg);
+                    ctx.getSource().sendChatMessage(msg);
                     }
 
                     index++;
