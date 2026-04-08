@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
 import com.zenith.command.api.CommandSource;
-import com.zenith.command.api.CommandContext;
+private CommandContext ctx;
 public class ReaderPlugin {
 
     /* ================================
@@ -62,8 +62,8 @@ public class ReaderPlugin {
   
     private CommandSource source;
 
-    public void start(CommandSource source) {
-        this.source = source;
+    public void start(CommandContext ctx) {
+        this.ctx = ctx;
        
         loadProgress();
         
@@ -74,7 +74,7 @@ public class ReaderPlugin {
         
         new Thread(() -> {
             int sent = 0;
-
+        
             while (running) {
                 try {
                     if (messages.isEmpty()) {
@@ -89,10 +89,10 @@ public class ReaderPlugin {
                             break;
                         }
                     }
-                    var source = ctx.getSource();
+                    
                     String msg = messages.get(index);
                     
-                    source.getEmbed().description(msg).send();
+                    ctx.getSource().getEmbed().description(msg).send();
                     
 
                     index++;
