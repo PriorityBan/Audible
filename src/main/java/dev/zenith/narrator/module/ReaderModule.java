@@ -43,7 +43,7 @@ public class ReaderModule extends Module {
        ================================ */
     public void loadFile() {
         try {
-            var inputStream = getClass().getClassLoader().getResourceAsStream(fileName);
+            var inputStream = getClass().getResourceAsStream("/" + fileName);
     
             if (inputStream == null) {
                 System.out.println("[ReaderModule] File not found in resources!");
