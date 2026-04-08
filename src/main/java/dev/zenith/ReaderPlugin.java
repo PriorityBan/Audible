@@ -64,7 +64,7 @@ public class ReaderPlugin {
 
         running = true;
         
-
+        var source = ctx.getSource();
         new Thread(() -> {
             int sent = 0;
 
@@ -85,7 +85,7 @@ public class ReaderPlugin {
 
                     String msg = messages.get(index);
                     
-                    ctx.getSource().sendChatMessage(msg);
+                    source.sendChatMessage(msg);
                     
 
                     index++;
