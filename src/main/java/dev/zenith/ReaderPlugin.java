@@ -49,6 +49,9 @@ public class ReaderPlugin {
             e.printStackTrace();
             messages = List.of("Error loading file");
         }
+       if (index >= messages.size()) {
+        index = 0;
+        }
     }
 
     /* ================================
