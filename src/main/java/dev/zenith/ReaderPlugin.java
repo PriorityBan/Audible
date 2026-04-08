@@ -12,7 +12,8 @@ public class ReaderPlugin {
        🔧 EDITABLE SETTINGS (CHANGE THESE)
        ================================ */
 
-    private int delayMs = 4000;         // ⏱ Delay between messages (ms)
+    private int minDelayMs = 3000;         // ⏱ Minimum delay
+    private int maxDelayMs = 4000;         // ⏱ Maximum delay
     private boolean randomOrder = false; // 🎲 Shuffle lines
     private boolean loop = false;        // 🔁 Loop when finished
     private int maxMessages = -1;       // 📊 Limit (-1 = infinite)
@@ -88,7 +89,8 @@ public class ReaderPlugin {
                         break;
                     }
 
-                    Thread.sleep(delayMs);
+                    int randomDelay = minDelay + new Random().nextInt(maxDelay - minDelay + 1);
+                    Thread.sleep(randomDelay);
 
                 } catch (Exception e) {
                     e.printStackTrace();
