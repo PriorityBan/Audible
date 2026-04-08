@@ -10,7 +10,7 @@ import dev.zenith.narrator.command.NarratorCommand;
 
 @Plugin(
     id = "narrator-plugin",
-    version = "1.0",
+    version = "1.0.0",
     description = "Chat narrator plugin",
     authors = {"you"},
     mcVersions = "*"
