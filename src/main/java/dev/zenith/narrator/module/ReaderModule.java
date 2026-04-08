@@ -25,7 +25,7 @@ public class ReaderModule extends Module {
     private boolean randomOrder = false;
     private boolean loop = false;
     private int maxMessages = -1;
-
+    private int delayTicks;
     private String fileName = "FinalSmartSpam.txt";
     private String progressFile = "reader_progress.txt";
 
@@ -68,6 +68,7 @@ public class ReaderModule extends Module {
        ================================ */
     @Override
     public void onEnable() {
+        delayTicks = getRandomDelayTicks();
         loadProgress();
         loadFile();
         sent = 0;
@@ -97,9 +98,12 @@ public class ReaderModule extends Module {
     private void onTick(ClientTickEvent event) {
         if (messages.isEmpty()) return;
 
-        if (!timer.tick(getRandomDelayTicks())) return;
+        if (!timer.tick(delayTicks)) return;
 
         timer.reset();
+        delayTicks = getRandomDelayTicks();
+
+       
 
         if (index >= messages.size()) {
             if (loop) {
