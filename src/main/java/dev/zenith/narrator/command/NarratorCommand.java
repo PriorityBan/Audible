@@ -1,4 +1,4 @@
-package org.example.command;
+package dev.zenith.narrator.command;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.zenith.command.api.Command;
