@@ -5,7 +5,7 @@ package dev.zenith;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
-import com.zenith.command.api.CommandContext;
+import com.zenith.command.api.CommandSource;
 public class ReaderPlugin {
 
     /* ================================
@@ -58,13 +58,13 @@ public class ReaderPlugin {
        🚀 START SPAMMING
        ================================ */
 
-    public void start(CommandContext ctx) {
+    public void start(CommandSource source){
         loadProgress();
         if (running) return;
 
         running = true;
         
-        var source = ctx.getSource();
+        
         new Thread(() -> {
             int sent = 0;
 
@@ -85,7 +85,7 @@ public class ReaderPlugin {
 
                     String msg = messages.get(index);
                     
-                    source.sendChatMessage(msg);
+                    source.getClient().sendChat(msg);
                     
 
                     index++;
