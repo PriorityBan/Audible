@@ -32,7 +32,7 @@ public class ReaderModule extends Module {
     /* ================================
        ⚙️ STATE
        ================================ */
-    private final Timer timer = Timers.millisTimer();
+    private final Timer timer = Timers.tickTimer();
     private List<String> messages = new ArrayList<>();
     private int index = 0;
     private int sent = 0;
@@ -94,10 +94,12 @@ public class ReaderModule extends Module {
         );
     }
 
+    
+    
     private void onTick(ClientTickEvent event) {
         if (messages.isEmpty()) return;
 
-        if (!timer.hasElapsed(getRandomDelay())) return;
+        if (!timer.tick(getRandomDelayTicks())) return;
 
         timer.reset();
 
