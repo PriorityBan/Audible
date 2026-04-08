@@ -43,6 +43,7 @@ public class NarratorCommand extends Command {
 
                 c.getSource().getEmbed()
                     .title("Narrator " + toggleStrCaps(enabled));
+                return 1; // ✅ REQUIRED
             }));
     }
 
