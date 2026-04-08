@@ -147,3 +147,4 @@ public class ReaderPlugin {
     public void stop() {
         running = false;
     }
+    }
