@@ -60,7 +60,11 @@ public class ReaderPlugin {
        ================================ */
 
   
-    public void start(CommandContext ctx){
+    private CommandSource source;
+
+    public void start(CommandSource source) {
+        this.source = source;
+       
         loadProgress();
         
         if (running) return;
@@ -88,7 +92,7 @@ public class ReaderPlugin {
                     var source = ctx.getSource();
                     String msg = messages.get(index);
                     
-                    source.sendMessage(msg);
+                    source.getEmbed().description(msg).send();
                     
 
                     index++;
