@@ -89,7 +89,7 @@ public class ReaderPlugin {
                         break;
                     }
 
-                    int randomDelay = minDelay + new Random().nextInt(maxDelay - minDelay + 1);
+                    int randomDelay = minDelayMs + new Random().nextInt(maxDelayMs - minDelayMs + 1);
                     Thread.sleep(randomDelay);
 
                 } catch (Exception e) {
